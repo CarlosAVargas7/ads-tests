@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { CheckoutState, ShippingInfo, PaymentInfo } from "../types/checkout";
 import { CartState } from "../types/cart";
-import { useErrorTracking } from "./useErrorTracking";
 
 const initialShippingInfo: ShippingInfo = {
   firstName: "",
@@ -53,8 +52,6 @@ export const useCheckout = (cart: CartState) => {
     ],
     isProcessing: false,
   });
-
-  const trackCheckoutError = useErrorTracking();
 
   // Track checkout step abandonment
   useEffect(() => {
