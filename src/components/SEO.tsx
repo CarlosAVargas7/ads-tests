@@ -1,47 +1,42 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
     title: string;
     desc: string;
+    canonical?: string;
 }
 
-export const SEO: React.FC<SEOProps> = ({ title, desc }) => {
-    useEffect(() => {
-        document.title = title;
-        
-        // Description meta
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', desc);
+export const SEO: React.FC<SEOProps> = ({ title, desc, canonical }) => {
+    const baseUrl = 'https://carlosavargas7.github.io/ads-tests';
+    const canonicalUrl = canonical || `${baseUrl}${window.location.pathname}`;
 
-        // Open Graph
-        const updateMetaTag = (property: string, content: string) => {
-            let tag = document.querySelector(`meta[property="${property}"]`);
-            if (!tag) {
-                tag = document.createElement('meta');
-                tag.setAttribute('property', property);
-                document.head.appendChild(tag);
-            }
-            tag.setAttribute('content', content);
-        };
+    return (
+        <Helmet>
+            {/* Title */}
+            <title>{title}</title>
 
-        updateMetaTag('og:title', title);
-        updateMetaTag('og:description', desc);
-        updateMetaTag('og:image', 'https://via.placeholder.com/1200x630/4F46E5/FFFFFF?text=Ads+Tracking+Sandbox');
+            {/* Description */}
+            <meta name="description" content={desc} />
 
-        // Canonical
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://yourdomain.com' + window.location.pathname);
-    }, [title, desc]);
+            {/* Open Graph */}
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={desc} />
+            <meta property="og:image" content="https://via.placeholder.com/1200x630/4F46E5/FFFFFF?text=Ads+Tracking+Sandbox" />
+            <meta property="og:type" content="website" />
 
-    return null;
+            {/* Twitter Card */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={title} />
+            <meta name="twitter:description" content={desc} />
+            <meta name="twitter:image" content="https://via.placeholder.com/1200x630/4F46E5/FFFFFF?text=Ads+Tracking+Sandbox" />
+
+            {/* Canonical */}
+            <link rel="canonical" href={canonicalUrl} />
+
+            {/* Additional Meta */}
+            <meta name="robots" content="index, follow" />
+            <meta name="author" content="CarlosAVargas7" />
+            <meta name="keywords" content="tracking, analytics, ecommerce, funnel, attribution, UTMs" />
+        </Helmet>
+    );
 };

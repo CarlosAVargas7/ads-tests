@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { CookieConsent } from './components/CookieConsent';
 import { Cart } from './components/Cart';
+import { GoogleAnalytics } from './components/GoogleAnalytics';
 
 // Contexts
 import { CartProvider, useCartContext } from './contexts/CartContext';
@@ -45,6 +46,7 @@ const AppContent: React.FC = () => {
 
     return (
         <Router basename="/ads-tests">
+            <GoogleAnalytics />
             <Navigation itemCount={getItemCount()} onToggleCart={toggleCart} />
 
             <Routes>

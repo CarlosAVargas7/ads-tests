@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { useAnalytics } from '../hooks/useAnalytics';
 
 export const SuccessPage: React.FC = () => {
-    useAnalytics();
-    
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-center px-4">
             <SEO title="Éxito | Registro Completado" desc="Página de agradecimiento del laboratorio" />
