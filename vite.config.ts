@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/ads-tests/", // Repository name for GitHub Pages
+  base: "/", // Root domain for GitHub Pages
   build: {
     outDir: "dist",
     assetsDir: "assets",
