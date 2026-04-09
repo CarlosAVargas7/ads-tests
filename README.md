@@ -45,10 +45,28 @@ El workflow `.github/workflows/deploy.yml` se ejecutará automáticamente:
 - **On push to main**: Build y deploy a GitHub Pages
 - **On pull request**: Build only (no deploy)
 
+#### **1. Checkout** del código
+
+2. **Setup pnpm** → Instala pnpm PRIMERO
+3. **Setup Node.js 24** → Última versión estable, sin warnings
+4. **Install dependencies** → Usa pnpm con cache
+5. **Build project** → Compila el proyecto
+6. **Deploy** → Sube a GitHub Pages
+
+#### **Cache Strategy:**
+
+```yaml
+# Node.js 24 cache para módulos globales
+cache: "pnpm"
+
+# pnpm cache para dependencies del proyecto
+cache_dependency_path: pnpm-lock.yaml
+```
+
 #### URL de Producción
 
 ```
-https://[username].github.io/ads-tests/
+https://[username].github.io/
 ```
 
 ### Manual Deployment
@@ -163,19 +181,19 @@ El sistema implementa eventos GA4 completos:
 
 ```javascript
 // Enhanced Conversions data
-user_id: 'user_1672531200000_abc123'
-first_source: 'google'
-last_source: 'direct'
-touch_count: 4
+user_id: "user_1672531200000_abc123";
+first_source: "google";
+last_source: "direct";
+touch_count: 4;
 ```
 
 ### Custom Audiences
 
 ```javascript
 // Audiencias personalizadas
-high_value_users: cart_value_bucket === 'high'
-multi_touch_users: touch_count > 2
-engaged_users: engagement_level === 'high'
+high_value_users: cart_value_bucket === "high";
+multi_touch_users: touch_count > 2;
+engaged_users: engagement_level === "high";
 ```
 
 ## Environment Variables
