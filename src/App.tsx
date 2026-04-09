@@ -44,7 +44,7 @@ const AppContent: React.FC = () => {
     }, []);
 
     return (
-        <Router>
+        <Router basename="/ads-tests">
             <Navigation itemCount={getItemCount()} onToggleCart={toggleCart} />
 
             <Routes>
