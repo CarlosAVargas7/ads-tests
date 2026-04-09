@@ -44,16 +44,16 @@ const AppContent: React.FC = () => {
     }, []);
 
     return (
-        <Router basename="/ads-tests">
+        <Router>
             <Navigation itemCount={getItemCount()} onToggleCart={toggleCart} />
 
             <Routes>
-                <Route path="/" element={
+                <Route path="/ads-tests" element={
                     <div className="h-screen">
                         <HomePage />
                     </div>
                 } />
-                <Route path="/tienda" element={<TiendaPage />} />
+                <Route path="/ads-tests/tienda" element={<TiendaPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/checkout-success" element={<CheckoutSuccess />} />
             </Routes>
