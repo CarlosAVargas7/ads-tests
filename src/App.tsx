@@ -44,18 +44,18 @@ const AppContent: React.FC = () => {
     }, []);
 
     return (
-        <Router>
+        <Router basename="/ads-tests">
             <Navigation itemCount={getItemCount()} onToggleCart={toggleCart} />
 
             <Routes>
-                <Route path="/ads-tests" element={
+                <Route path="/" element={
                     <div className="h-screen">
                         <HomePage />
                     </div>
                 } />
-                <Route path="/ads-tests/tienda" element={<TiendaPage />} />
-                <Route path="/ads-tests/checkout" element={<CheckoutPage />} />
-                <Route path="/ads-tests/checkout-success" element={<CheckoutSuccess />} />
+                <Route path="/tienda" element={<TiendaPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/checkout-success" element={<CheckoutSuccess />} />
             </Routes>
 
             <CookieConsent />
