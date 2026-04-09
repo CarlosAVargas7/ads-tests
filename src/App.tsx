@@ -19,11 +19,6 @@ import { HomePage } from './pages/HomePage';
 import { TiendaPage } from './pages/TiendaPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { CheckoutSuccess } from './pages/CheckoutSuccess';
-// Development Tools (Commented for production)
-// import { UTMTester } from './components/UTMTester';
-// import { AudienceTester } from './components/AudienceTester';
-// import { UserAcquisitionTester } from './components/UserAcquisitionTester';
-// import { AttributionModelTester } from './components/AttributionModelTester';
 
 // --- APP CONTENT ---
 const AppContent: React.FC = () => {
@@ -32,15 +27,22 @@ const AppContent: React.FC = () => {
     useUserAcquisitionTracking(); // Initialize user acquisition tracking
     useAttributionModel(); // Initialize attribution model
 
+    // Consent Mode - Versión recomendada con GTM (más ligera)
     useEffect(() => {
+        // Solo seteamos default en denied (el update lo hará tu CookieConsent)
         window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) { window.dataLayer.push(args); }
-        gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'analytics_storage': 'denied',
-            'wait_for_update': 500
+        window.dataLayer.push({
+            event: 'consent_default',
+            ad_storage: "denied",
+            analytics_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            functionality_storage: "denied",
+            personalization_storage: "denied",
+            security_storage: "granted"
         });
-        console.log('?? Consent Mode: Inicializado en Denied');
+
+        console.log('✅ Consent Mode v2: Default = Denied');
     }, []);
 
     return (
@@ -71,19 +73,6 @@ const AppContent: React.FC = () => {
                 />
             )}
 
-            {/* Development Tools - Fixed Positions (Commented for production) */}
-            {/* <div className="fixed top-4 right-4 z-50">
-                <UTMTester />
-            </div>
-            <div className="fixed top-4 left-4 z-50">
-                <AudienceTester />
-            </div>
-            <div className="fixed bottom-4 left-4 z-50">
-                <UserAcquisitionTester />
-            </div>
-            <div className="fixed bottom-4 right-4 z-50">
-                <AttributionModelTester />
-            </div> */}
         </Router>
     );
 };
