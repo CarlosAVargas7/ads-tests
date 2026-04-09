@@ -66,7 +66,7 @@ cache_dependency_path: pnpm-lock.yaml
 #### URL de Producción
 
 ```
-https://[username].github.io/
+https://[username].github.io/ads-tests/
 ```
 
 ### Manual Deployment
