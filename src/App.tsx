@@ -54,8 +54,8 @@ const AppContent: React.FC = () => {
                     </div>
                 } />
                 <Route path="/ads-tests/tienda" element={<TiendaPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/checkout-success" element={<CheckoutSuccess />} />
+                <Route path="/ads-tests/checkout" element={<CheckoutPage />} />
+                <Route path="/ads-tests/checkout-success" element={<CheckoutSuccess />} />
             </Routes>
 
             <CookieConsent />
